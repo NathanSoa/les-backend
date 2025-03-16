@@ -1,0 +1,1 @@
+ALTER TABLE addresses MODIFY complement varchar(255) NULL;

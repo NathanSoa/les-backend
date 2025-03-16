@@ -10,7 +10,7 @@ public record CustomerPM(Long id,
                          String cpf,
                          String email,
                          String phone,
-                         List<Address> address,
+                         List<Address> addresses,
                          List<Card> cards,
                          Boolean active) {
 }

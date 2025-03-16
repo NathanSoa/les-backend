@@ -22,7 +22,6 @@ neighborhood   varchar(255) not null,
 number         varchar(255) not null,
 state          varchar(255) not null,
 street         varchar(255) not null,
-street_purpose varchar(255) not null,
 zip_code       varchar(255) not null,
 customer_id    bigint,
 
@@ -33,6 +32,21 @@ alter table addresses
 add constraint fk_address_customer_id
 foreign key (customer_id)
 references customers (id);
+
+create table address_purposes (
+id             bigint not null auto_increment,
+active         boolean not null,
+created_at     datetime(6) not null default current_timestamp(6),
+purpose        varchar(255) not null,
+address_id     bigint,
+
+primary key (id)
+);
+
+alter table address_purposes
+add constraint fk_address_purposes_addresses_id
+foreign key (address_id)
+references addresses (id);
 
 create table cards (
 id             bigint not null auto_increment,

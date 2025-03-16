@@ -14,6 +14,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.br.CPF;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -43,11 +44,11 @@ public class CustomerEntity extends BaseEntity {
 
     @OneToMany
     @JoinColumn(name = "customer_id")
-    private List<AddressEntity> addressEntity;
+    private List<AddressEntity> addressEntity = new ArrayList<>();
 
     @OneToMany
     @JoinColumn(name = "customer_id")
-    private List<CardEntity> cardEntity;
+    private List<CardEntity> cardEntity = new ArrayList<>();
 
     public CustomerEntity withName(String name) {
         this.name = name;

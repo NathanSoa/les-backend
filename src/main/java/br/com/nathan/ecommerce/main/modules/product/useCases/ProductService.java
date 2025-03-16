@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductService extends AbstractService<Product, ProductEntity> {
 
-
     public ProductService(
             IDAO<ProductEntity> dao,
             Mapper<Product, ProductEntity> mapperToEntity,

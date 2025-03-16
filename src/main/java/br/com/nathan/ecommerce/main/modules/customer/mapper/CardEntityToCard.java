@@ -11,6 +11,7 @@ public class CardEntityToCard implements Mapper<CardEntity, Card> {
     @Override
     public Card map(CardEntity raw) {
         return Card.Create()
+                    .withId(raw.getId())
                     .withNumber(raw.getNumber())
                     .withName(raw.getName())
                     .withFlag(raw.getFlag())

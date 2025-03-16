@@ -4,6 +4,7 @@ import br.com.nathan.ecommerce.main.core.interfaces.Validator;
 import br.com.nathan.ecommerce.main.modules.customer.domain.Address;
 import br.com.nathan.ecommerce.main.modules.customer.domain.Card;
 import br.com.nathan.ecommerce.main.modules.customer.domain.Customer;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,8 @@ import static br.com.nathan.ecommerce.main.core.utils.Utils.createErrorMap;
 
 @Component
 public class CustomerValidator implements Validator<Customer> {
+    private final Logger logger = org.slf4j.LoggerFactory.getLogger(CustomerValidator.class);
+
 
     @Qualifier("cpfValidator")
     private final Validator<String> cpfValidator;
@@ -54,6 +57,8 @@ public class CustomerValidator implements Validator<Customer> {
     }
 
     private Map<String, List<String>> executeValidations(Customer object) {
+        logger.info("Validating customer {}", object);
+
         var cpfErrors = cpfValidator.validate(object.getCpf().getValue());
         var emailErrors = emailValidator.validate(object.getEmail().getValue());
         var passwordErrors = passwordValidator.validate(object.getPassword().getValue());

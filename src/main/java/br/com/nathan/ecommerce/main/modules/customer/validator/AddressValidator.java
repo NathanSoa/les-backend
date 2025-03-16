@@ -86,7 +86,7 @@ public class AddressValidator implements Validator<Address> {
 
             if((each != null && each.isEmpty()) &&
                     !each.equals(AddressPurpose.BILLING.getDescription()) &&
-                    !each.equals(AddressPurpose.DELIVERY.getDescription())
+                    !each.equals(AddressPurpose.SHIPPING.getDescription())
             ) {
                 codes.add("address.streetPurpose.invalid");
             }

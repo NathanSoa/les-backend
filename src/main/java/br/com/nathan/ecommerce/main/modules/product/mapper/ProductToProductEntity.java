@@ -14,6 +14,7 @@ public class ProductToProductEntity implements Mapper<Product, ProductEntity> {
 
         return productEntity.withName(raw.getName())
             .withPrice(raw.getPrice())
-            .withActive(raw.isActive());
+            .withActive(raw.isActive())
+            .withPhotoUrl(raw.getPhotoUrl());
     }
 }

@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Card {
-
+    private Long id;
     private String type;
     private String number;
     private String name;
@@ -16,6 +16,11 @@ public class Card {
 
     public static Card Create() {
         return new Card();
+    }
+
+    public Card withId(Long id) {
+        this.id = id;
+        return this;
     }
 
     public Card withType(String type) {

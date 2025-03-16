@@ -2,6 +2,7 @@ package br.com.nathan.ecommerce.main.core.domain;
 
 import br.com.nathan.ecommerce.main.core.exceptions.ValidationException;
 import br.com.nathan.ecommerce.main.core.interfaces.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -25,12 +26,14 @@ public abstract class AbstractService<T, E extends BaseEntity> implements IServi
         this.validator = validator;
     }
 
+    @Transactional
     public T create(T domain) {
         throwErrorIfInvalid(domain);
         final var entity = dao.save(mapperToEntity.map(domain));
         return mapperToDomain.map(entity);
     }
 
+    @Transactional
     public T update(T domain, Long id) {
         throwErrorIfInvalid(domain);
         dao.findById(id);
@@ -38,6 +41,7 @@ public abstract class AbstractService<T, E extends BaseEntity> implements IServi
         return mapperToDomain.map(entityUpdated);
     }
 
+    @Transactional
     public T updateActive(Long id, boolean active) {
         final var entity = dao.findById(id);
         entity.setActive(active);
@@ -45,6 +49,7 @@ public abstract class AbstractService<T, E extends BaseEntity> implements IServi
         return mapperToDomain.map(entityUpdated);
     }
 
+    @Transactional
     public void delete(Long id) {
         dao.deleteById(id);
     }
@@ -60,7 +65,7 @@ public abstract class AbstractService<T, E extends BaseEntity> implements IServi
                 .collect(Collectors.toSet());
     }
 
-    private void throwErrorIfInvalid(T domain) {
+    public void throwErrorIfInvalid(T domain) {
         var possibleErrors = validator.validate(domain);
         if (!possibleErrors.isEmpty()) {
             throw new ValidationException(possibleErrors);

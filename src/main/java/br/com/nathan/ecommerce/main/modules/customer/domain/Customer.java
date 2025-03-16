@@ -2,6 +2,7 @@ package br.com.nathan.ecommerce.main.modules.customer.domain;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static br.com.nathan.ecommerce.main.core.utils.Utils.TrueIfNull;
@@ -19,10 +20,18 @@ public class Customer {
     private List<Card> card;
     private Boolean active;
 
-    private Customer() { }
+    private Customer() {
+        this.address = new ArrayList<>();
+        this.card = new ArrayList<>();
+    }
 
     public static Customer Create() {
         return new Customer();
+    }
+
+    public Customer withId(Long id) {
+        this.id = id;
+        return this;
     }
 
     public Customer withName(String name) {

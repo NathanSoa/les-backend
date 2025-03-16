@@ -8,6 +8,8 @@ import br.com.nathan.ecommerce.main.modules.customer.repository.entity.CustomerE
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+
 @Component
 @AllArgsConstructor
 public class CustomerEntityToCustomer implements Mapper<CustomerEntity, Customer> {
@@ -26,8 +28,12 @@ public class CustomerEntityToCustomer implements Mapper<CustomerEntity, Customer
         customer.setPhone(Phone.Create(raw.getPhone()));
         customer.setPassword(Password.Create(raw.getPassword()));
         customer.setActive(raw.getActive());
-        customer.setAddress(raw.getAddressEntity().stream().map(addressMapper::map).toList());
-        customer.setCard(raw.getCardEntity().stream().map(cardMapper::map).toList());
+
+        var addressList = new ArrayList<>(raw.getAddressEntity().stream().map(addressMapper::map).toList());
+        customer.setAddress(addressList);
+
+        var cardList = new ArrayList<>(raw.getCardEntity().stream().map(cardMapper::map).toList());
+        customer.setCard(cardList);
 
         return customer;
     }

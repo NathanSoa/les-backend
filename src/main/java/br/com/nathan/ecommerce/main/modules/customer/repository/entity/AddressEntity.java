@@ -1,13 +1,13 @@
 package br.com.nathan.ecommerce.main.modules.customer.repository.entity;
 
 import br.com.nathan.ecommerce.main.core.domain.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "addresses")
@@ -24,7 +24,6 @@ public class AddressEntity extends BaseEntity {
     @NotBlank
     private String number;
 
-    @NotBlank
     private String complement;
 
     @NotBlank
@@ -39,8 +38,9 @@ public class AddressEntity extends BaseEntity {
     @NotBlank
     private String zipCode;
 
-    @NotBlank
-    private String streetPurpose;
+    @OneToMany
+    @JoinColumn(name = "address_id")
+    private List<AddressPurposeEntity> addressPurposes = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "customer_id", insertable = false, updatable = false)
@@ -86,8 +86,13 @@ public class AddressEntity extends BaseEntity {
         return this;
     }
 
-    public AddressEntity withStreetPurpose(String streetPurpose) {
-        this.streetPurpose = streetPurpose;
+    public AddressEntity withAddressPurposes(List<AddressPurposeEntity> streetPurposes) {
+        this.addressPurposes = streetPurposes;
+        return this;
+    }
+
+    public AddressEntity withId(Long id) {
+        super.setId(id);
         return this;
     }
 }

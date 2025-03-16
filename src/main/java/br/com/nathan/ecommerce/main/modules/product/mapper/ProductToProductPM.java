@@ -13,7 +13,8 @@ public class ProductToProductPM implements Mapper<Product, ProductPM> {
         return new ProductPM(
             raw.getId(),
             raw.getName(),
-            raw.getPrice()
+            raw.getPrice(),
+            raw.getPhotoUrl()
         );
     }
 }

@@ -10,7 +10,7 @@ public class CustomerBusinessRules {
 
     private final ValidateCardFlag validateCardFlag;
     private final ValidateBillingAddress validateBillingAddress;
-    private final ValidateDeliveryAddress validateDeliveryAddress;
+    private final ValidateShippingAddress validateDeliveryAddress;
 
     public void validate(Customer object) {
         validateCardFlag.process(object.getCard());

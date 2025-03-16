@@ -8,6 +8,7 @@ public class Product {
     private Long id;
     private String name;
     private Double price;
+    private String photoUrl;
     private boolean active;
 
     private Product() { }
@@ -33,6 +34,11 @@ public class Product {
 
     public Product withActive(boolean active) {
         this.active = active;
+        return this;
+    }
+
+    public Product withPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
         return this;
     }
 }

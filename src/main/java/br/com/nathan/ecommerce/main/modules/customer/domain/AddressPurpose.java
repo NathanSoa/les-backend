@@ -4,8 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum AddressPurpose {
-    BILLING("Cobrança"),
-    DELIVERY("Entrega");
+    BILLING("BILLING"),
+    SHIPPING("SHIPPING");
 
     private final String description;
 

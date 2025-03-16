@@ -23,6 +23,7 @@ public class ProductEntity extends BaseEntity {
     @NotNull
     private Double price;
 
+    private String photoUrl;
 
     @NotBlank(message = "{customer.name.not-blank}")
     @Size(min = ValidationConstants.NAME_MIN_LENGTH, max = ValidationConstants.NAME_MAX_LENGTH, message = "{customer.name.size}")
@@ -50,6 +51,11 @@ public class ProductEntity extends BaseEntity {
 
     public ProductEntity withSlug(String slug) {
         this.slug = slug;
+        return this;
+    }
+
+    public ProductEntity withPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
         return this;
     }
 }
